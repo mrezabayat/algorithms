@@ -61,11 +61,11 @@ int main()
     // First create an instance of an engine.
     std::random_device rnd_device;
     // Specify the engine and distribution.
-    std::mt19937 mersenne_engine{rnd_device()}; // Generates random integers
-    std::uniform_int_distribution<int> dist{-1000, 1000};
+    std::mt19937 mersenne_engine(rnd_device()); // Generates random integers
+    std::normal_distribution<double> dist(-1000, 1000);
 
-    std::vector<int> numbers(25);
-    std::generate(begin(numbers), end(numbers), [&dist, &mersenne_engine]()
+    std::vector<double> numbers(25);
+    std::generate(numbers.begin(), numbers.end(), [&dist, &mersenne_engine]()
                   { return dist(mersenne_engine); });
 
     
