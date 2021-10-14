@@ -1,8 +1,6 @@
 #include <iostream>
 #include <vector>
 #include <iterator>
-#include <random>
-#include <algorithm>
 #include "utility.hpp"
 
 // Selection sort algorithm

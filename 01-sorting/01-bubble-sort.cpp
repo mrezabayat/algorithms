@@ -1,7 +1,5 @@
 #include <iostream>
 #include <vector>
-#include <random>
-#include <algorithm>
 #include "utility.hpp"
 
 // Bubble sort algorithm
