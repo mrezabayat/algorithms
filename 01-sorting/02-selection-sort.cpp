@@ -3,6 +3,7 @@
 #include <iterator>
 #include <random>
 #include <algorithm>
+#include "utility.hpp"
 
 // Selection sort algorithm
 // Worst complexity: n^2
@@ -12,31 +13,6 @@
 // Method: Selection
 // Stable: No
 // Class: Comparison sort
-
-/*!
- * \brief This general function swaps two varables
- * \param a first variable
- * \param a second variable
- */
-template <typename T>
-void swap(T &a, T &b)
-{
-    T temp{a};
-    a = b;
-    b = temp;
-}
-
-// Overloading the << operator for printing vectors.
-template <typename T>
-std::ostream &operator<<(std::ostream &out, const std::vector<T> &vec)
-{
-    out << "[";
-    for (auto a : vec)
-        out << a << ", ";
-    out << "\b\b]\n";
-    return out;
-}
-
 
 template <typename iterator>
 iterator minIterator(const iterator start, const iterator end)
@@ -72,7 +48,7 @@ void selectionSort(std::vector<T> &numbers)
            
             // doing it manually
             auto minIndex = minIterator(numbers.begin() + numbers.size() - sizeOfNumbers, numbers.end());
-            swap(*minIndex, *(numbers.begin() + numbers.size() - sizeOfNumbers));
+            sort::swap(*minIndex, *(numbers.begin() + numbers.size() - sizeOfNumbers));
         }
         catch (const std::exception &e)
         {
@@ -84,24 +60,16 @@ void selectionSort(std::vector<T> &numbers)
 
 int main()
 {
-    //------------------ Generating random numbers ---------------------
-    std::random_device rndDevice;
-    std::mt19937 engine(rndDevice());
-    std::uniform_int_distribution<int> dist(-10, 10);
-
-    std::vector<int> rndNumbers(6);
-    std::generate(rndNumbers.begin(), rndNumbers.end(), [&dist, &engine]()
-                  { return dist(engine); });
-    //-------------------------------------------------------------------
+    std::vector<int> numbers = sort::generateRandomVector<int>();
 
     //------------------ Selection sort algorithm -----------------------
     std::cout << "before sorting:\n";
-    std::cout << rndNumbers;
+    std::cout << numbers;
 
-    selectionSort(rndNumbers);
+    selectionSort(numbers);
 
     std::cout << "after sorting:\n";
-    std::cout << rndNumbers;
+    std::cout << numbers;
     //-------------------------------------------------------------------
     return 0;
 }

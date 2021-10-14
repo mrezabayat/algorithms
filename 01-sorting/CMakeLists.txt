@@ -1,2 +1,8 @@
-add_executable(bubble-sort 01-bubble-sort.cpp)
-add_executable(selection-sort 02-selection-sort.cpp)
+file(GLOB APP_SOURCES *.cpp)
+foreach (testsourcefile ${APP_SOURCES})
+    get_filename_component(testname ${testsourcefile} NAME_WLE)
+    message("   ${testname}")
+    add_executable("${testname}" ${testname}.cpp)
+    target_link_directories("${testname}" PUBLIC 
+                            "${PROJECT_SOURCE_DIR}/01-sorting")
+endforeach (testsourcefile ${APP_SOURCES})
