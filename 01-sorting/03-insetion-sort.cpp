@@ -2,6 +2,15 @@
 #include <vector>
 #include "utility.hpp"
 
+// Insertion sort
+// Worst complexity: n^2
+// Average complexity: n^2
+// Best complexity: n
+// Space complexity: 1
+// Method: Insertion
+// Stable: Yes
+// Class: Comparison sort
+
 template<typename T>
 void insertionSort(std::vector<T> &numbers)
 {
